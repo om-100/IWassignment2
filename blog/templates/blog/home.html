@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container">
+        <h1 class="display-4">Welcome to our home page</h1>
+        <p class="lead">This page contains all the blogs.</p>
+        <div class="pb-5 pt-3">
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for blog in blog_list%}
+        <div class="col-md-4 mt-5">
+            <div class="card" style="width: 18rem;">
+                <img src="{{blog.image.url}}" class="card-img-top" alt="profile pic" style="height:200px">
+                <div class="card-body">
+                    <h5 class="card-title">{{blog.title}}</h5>
+                        created at: {{blog.created_at}}<br>
+                        updated at: {{blog.updated_at}}<br>
+
+                    </p>
+                    <a href="{% url 'blog-detail' blog.id %}" class="btn btn-outline-primary btn-block">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}

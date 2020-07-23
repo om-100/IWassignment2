@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container">
+        <h1 class="display-4">Blog Description</h1>
+        <p class="lead">Details of your blog.</p>
+        <div class="pb-5 pt-3">
+        </div>
+
+    </div>
+</div>
+<div class="container">
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{blog.image.url}}" class="card-img" alt="profile pic">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Title: {{blog.title}}</h5>
+        <p class="card-text">Created at: {{blog.created_at}}</p>
+        <p class="card-text">Updated at: {{blog.updated_at}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

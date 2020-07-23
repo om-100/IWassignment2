@@ -1,0 +1,74 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container">
+        <h1 class="display-4">Profile page</h1>
+        <p class="lead">view all your blogs.</p>
+        <div class="pb-5 pt-3">
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-7 mt-5">
+            <h3>Blog List</h3>
+            <a href="{% url 'blog-create' %}" class="btn btn-success">Create new blog</a>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for block in blogs %}
+                <tr>
+                    <td>{{block.id}}</td>
+                    <td>{{block.title}}</td>
+                    <td>{{block.created_at}}</td>
+                    <td>{{block.updated_at}}</td>
+                    <td><a href="{% url 'blog-detail' block.id %}" class="btn btn-success btn-sm"><i class="fa fa-eye"
+                                                                                                     aria-hidden="true"></i></a>
+                        <a href="{% url 'blog-update' block.id %}" class="btn btn-primary btn-sm"><i class="fa fa-edit"
+                                                                                                     aria-hidden="true"></i></a>
+                        <form action="{% url 'blog-delete' block.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"
+                                                                                   aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="col-5 mt-5">
+            <div class="card" style="width: 18rem;">
+                {% if user.image %}
+                <img src="{{user.image.url}}" class="card-img-top" alt="...">
+                {% else %}
+                <img src="" alt="profile image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{user.email}}</h5>
+                    <p class="card-text">{{user.get_full_name}}</p>
+                    <a href="{% url 'profile-update' user.id %}" class="btn btn-outline-warning btn-block">Edit
+                        Profile</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+{% endblock %}

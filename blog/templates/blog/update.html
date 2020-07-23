@@ -1,0 +1,62 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container">
+        <h1 class="display-4">Update your profile</h1>
+        <p class="lead">This page contains all the blogs.</p>
+        <div class="pb-5 pt-3">
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center" >
+
+        <div class="col-6 mt-5">
+            <form method="post" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        {{form.email}}
+                        {{form.email.error}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Username</label>
+                        {{form.username}}
+                        {{form.username.error}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAddress">Password</label>
+                    {{form.password}}
+                    {{form.password.error}}
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>First name</label>
+                        {{form.first_name}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last name</label>
+                        {{form.last_name}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    {{form.image}}
+                    {{form.image.error}}
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+{% endblock %}
